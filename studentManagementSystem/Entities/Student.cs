@@ -1,11 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace studentManagementSystem.Entities;
 
 public class Student(string name, int age, double grade, string studentId)
 {
+    public string StudentId { get; set; } = studentId;
+
     public string Name { get; set; } = name;
     public int Age { get; set; } = age;
     public double Grade { get; set; } = grade;
-    public string StudentId { get; set; } = studentId;
     
     public string DisplayInfo()
         => $"Name: {Name}, Age: {Age}, Grade: {Grade}, Student ID: {StudentId}";
