@@ -12,6 +12,7 @@ public class DatabaseService(string connectionString)
         using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
         Console.WriteLine("Connected to PostgreSQL successfully!");
+        connection.Close();
     }
     
     public string GetConnectionString()
