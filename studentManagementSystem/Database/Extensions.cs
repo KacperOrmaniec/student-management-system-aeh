@@ -1,4 +1,5 @@
 using System.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +20,13 @@ public static class Extensions
             
             return new DatabaseService(connectionString ?? throw new InvalidOperationException("Connection string not found."));
         });
+        
+        services.AddDbContext<StudentDbContext>(options =>
+        {
+            var connectionString = configuration["database:connectionStrings:postgres"];
+            options.UseNpgsql(connectionString);
+        });
+
 
         return services;
     }

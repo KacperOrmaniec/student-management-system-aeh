@@ -13,4 +13,8 @@ public class DatabaseService(string connectionString)
         connection.Open();
         Console.WriteLine("Connected to PostgreSQL successfully!");
     }
+    
+    public string GetConnectionString()
+        => _connectionString;
+    
 }
