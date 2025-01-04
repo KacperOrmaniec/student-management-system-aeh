@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using studentManagementSystem.Database;
+using Microsoft.EntityFrameworkCore;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
@@ -12,3 +13,4 @@ var host = Host.CreateDefaultBuilder(args)
 
 var databaseService = host.Services.GetRequiredService<DatabaseService>();
 databaseService.TestConnection();
+
