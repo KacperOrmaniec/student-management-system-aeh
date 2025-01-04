@@ -7,6 +7,8 @@ public class Student(string name, int age, double grade, string studentId)
     public double Grade { get; set; } = grade;
     public string StudentId { get; set; } = studentId;
     
+    public string DisplayInfo()
+        => $"Name: {Name}, Age: {Age}, Grade: {Grade}, Student ID: {StudentId}";
     public void SetName(string name)
         => Name = name;
     
@@ -18,4 +20,16 @@ public class Student(string name, int age, double grade, string studentId)
     
     public void SetStudentId(string studentId) 
         => StudentId = studentId;
+    
+    public string GetName()
+        => Name;
+    
+    public int GetAge()
+        => Age;
+    
+    public double GetGrade()
+        => Grade;
+    
+    public string GetStudentId()
+        => StudentId;
 }
