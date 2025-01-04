@@ -1,12 +1,13 @@
 using System.Collections;
+using studentManagementSystem.Entities;
 
 namespace studentManagementSystem.Abstractions;
 
 public interface IStudentManager
 {
-    void addStudent(Student student);
-    void removeStudent(string studentID);
-    void updateStudent(string studentID);
-    ArrayList<Student> displayAllStudents();
-    double calculateAverageGrade();
+    void AddStudent(Student student);
+    void RemoveStudent(string studentId);
+    void UpdateStudent(string studentId);
+    List<Student> DisplayAllStudents();
+    double CalculateAverageGrade();
 }
