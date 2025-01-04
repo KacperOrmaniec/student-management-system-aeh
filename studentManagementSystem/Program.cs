@@ -10,5 +10,11 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-var databaseService = host.Services.GetRequiredService<DatabaseService>();
-databaseService.TestConnection();
+using (var scope = host.Services.CreateScope())
+{
+    var databaseService = host.Services.GetRequiredService<DatabaseService>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<StudentDbContext>();
+    dbContext.Database.EnsureCreated();
+}
+
+await host.RunAsync();
