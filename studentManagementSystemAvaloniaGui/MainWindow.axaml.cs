@@ -16,7 +16,6 @@ public partial class MainWindow : Window
     public MainWindow(IServiceProvider serviceProvider)
     {
         InitializeComponent();
-        // Initialize the StudentManager (Replace with Dependency Injection if applicable)
         _studentManager = serviceProvider.GetRequiredService<IStudentManager>();
     }
 
@@ -24,35 +23,14 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
-            {
-                OutputArea.Text += "Error: Student ID cannot be empty.\n";
-                return;
-            }
+            var studentId = ValidateString(StudentIdInput.Text, "Student ID");
+            var name = ValidateString(NameInput.Text, "Name");
+            var age = ValidateInt(AgeInput.Text, "Age", 1, 100);
+            var grade = ValidateDouble(GradeInput.Text, "Grade", 1.00, 6.00);
             
-            if (string.IsNullOrWhiteSpace(NameInput.Text))
-            {
-                OutputArea.Text += "Error: Name cannot be empty.\n";
-                return;
-            }
-            
-            if (string.IsNullOrWhiteSpace(AgeInput.Text))
-            {
-                OutputArea.Text += "Error: Age cannot be empty.\n";
-                return;
-            }
-            
-            if (string.IsNullOrWhiteSpace(GradeInput.Text))
-            {
-                OutputArea.Text += "Error: Grade cannot be empty.\n";
-                return;
-            }
-
-            var student = new Student(NameInput.Text, 
-                                      int.Parse(AgeInput.Text), 
-                                      double.Parse(GradeInput.Text), 
-                                      StudentIdInput.Text);
+            var student = new Student(name, age, grade, studentId);
             _studentManager.AddStudent(student);
+            
             OutputArea.Text += "Student added successfully.\n";
         }
         catch (Exception ex)
@@ -65,13 +43,9 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
-            {
-                OutputArea.Text += "Error: Student ID cannot be empty.\n";
-                return;
-            }
+            var studentId = ValidateString(StudentIdInput.Text, "Student ID");
+            _studentManager.RemoveStudent(studentId);
             
-            _studentManager.RemoveStudent(StudentIdInput.Text);
             OutputArea.Text += "Student removed successfully.\n";
         }
         catch (Exception ex)
@@ -84,16 +58,13 @@ public partial class MainWindow : Window
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
-            {
-                OutputArea.Text += "Error: Student ID cannot be empty.\n";
-                return;
-            }
+            var studentId = ValidateString(StudentIdInput.Text, "Student ID");
+            var name = ValidateOptionalString(NameInput.Text);
+            var age = ValidateOptionalInt(AgeInput.Text, "Age", 1, 100);
+            var grade = ValidateOptionalDouble(GradeInput.Text, "Grade", 1.00, 6.00);
+
+            _studentManager.UpdateStudent(studentId, name, age, grade);
             
-            _studentManager.UpdateStudent(StudentIdInput.Text, 
-                                          NameInput.Text, 
-                                          int.TryParse(AgeInput.Text, out var age) ? age : (int?)null, 
-                                          double.TryParse(GradeInput.Text, out var grade) ? grade : (double?)null);
             OutputArea.Text += "Student updated successfully.\n";
         }
         catch (Exception ex)
@@ -130,5 +101,57 @@ public partial class MainWindow : Window
         {
             OutputArea.Text += $"Error: {ex.Message}\n";
         }
+    }
+    
+    private static string ValidateString(string? input, string fieldName)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            throw new ArgumentException($"{fieldName} cannot be empty.");
+        }
+        return input.Trim();
+    }
+
+    private static int ValidateInt(string? input, string fieldName, int min, int max)
+    {
+        if (!int.TryParse(input, out var value))
+        {
+            throw new ArgumentException($"{fieldName} must be a valid integer.");
+        }
+        if (value < min || value > max)
+        {
+            throw new ArgumentException($"{fieldName} must be between {min} and {max}.");
+        }
+        return value;
+    }
+
+    private static double ValidateDouble(string? input, string fieldName, double min, double max)
+    {
+        if (!double.TryParse(input, out var value))
+        {
+            throw new ArgumentException($"{fieldName} must be a valid number.");
+        }
+        if (value < min || value > max)
+        {
+            throw new ArgumentException($"{fieldName} must be between {min:F2} and {max:F2}.");
+        }
+        return value;
+    }
+
+    private string? ValidateOptionalString(string? input)
+    {
+        return string.IsNullOrWhiteSpace(input) ? null : input.Trim();
+    }
+
+    private static int? ValidateOptionalInt(string? input, string fieldName, int min, int max)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return null;
+        return ValidateInt(input, fieldName, min, max);
+    }
+
+    private static double? ValidateOptionalDouble(string? input, string fieldName, double min, double max)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return null;
+        return ValidateDouble(input, fieldName, min, max);
     }
 }
