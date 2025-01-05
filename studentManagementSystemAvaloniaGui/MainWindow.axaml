@@ -1,9 +1,31 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="studentManagementSystemAvaloniaGui.MainWindow"
-        Title="studentManagementSystemAvaloniaGui">
-    Welcome to Avalonia!
+        Title="Student Management System"
+        Width="600" Height="400">
+    <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="Auto,*,Auto">
+        <!-- Input Panel -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Student ID:" VerticalAlignment="Center" />
+            <TextBox Width="100" x:Name="StudentIdInput" Margin="5,0,15,0" />
+            <TextBlock Text="Name:" VerticalAlignment="Center" />
+            <TextBox Width="100" x:Name="NameInput" Margin="5,0,15,0" />
+            <TextBlock Text="Age:" VerticalAlignment="Center" />
+            <TextBox Width="50" x:Name="AgeInput" Margin="5,0,15,0" />
+            <TextBlock Text="Grade:" VerticalAlignment="Center" />
+            <TextBox Width="50" x:Name="GradeInput" Margin="5,0,15,0" />
+        </StackPanel>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <Button Content="Add Student" Click="OnAddStudentClicked" />
+            <Button Content="Remove Student" Click="OnRemoveStudentClicked" />
+            <Button Content="Update Student" Click="OnUpdateStudentClicked" />
+            <Button Content="Display All Students" Click="OnDisplayAllStudentsClicked" />
+            <Button Content="Calculate Average" Click="OnCalculateAverageClicked" />
+        </StackPanel>
+
+        <!-- Output Panel -->
+        <TextBox Grid.Row="2" Grid.ColumnSpan="3" x:Name="OutputArea" IsReadOnly="True" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+    </Grid>
 </Window>

@@ -1,21 +1,32 @@
 ﻿using Avalonia;
-using System;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.ReactiveUI;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using studentManagementSystem.Abstractions;
+using studentManagementSystem.Database;
+using studentManagementSystem.Entities;
+using studentManagementSystemAvaloniaGui;
 
-namespace studentManagementSystemAvaloniaGui;
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
+    {
+        services.AddDatabaseService(context.Configuration);
+        services.AddTransient<IStudentManager, StudentManager>();
+    })
+    .Build();
 
-class Program
+using (var scope = host.Services.CreateScope())
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
-    // Avalonia configuration, don't remove; also used by visual designer.
-    public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .WithInterFont()
-            .LogToTrace();
+    var databaseService = host.Services.GetRequiredService<DatabaseService>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<StudentDbContext>();
+    dbContext.Database.EnsureCreated();
 }
+
+AppBuilder.Configure(() => new App(host.Services))
+    .UsePlatformDetect()
+    .UseReactiveUI()
+    .StartWithClassicDesktopLifetime(args, ShutdownMode.OnMainWindowClose);
