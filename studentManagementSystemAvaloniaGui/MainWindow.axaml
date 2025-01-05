@@ -2,17 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="studentManagementSystemAvaloniaGui.MainWindow"
         Title="Student Management System"
-        Width="600" Height="400">
+        Width="900" Height="400">
     <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="Auto,*,Auto">
         <!-- Input Panel -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Student ID:" VerticalAlignment="Center" />
+            <TextBlock Text="Student ID:" VerticalAlignment="Center" Foreground="Black" />
             <TextBox Width="100" x:Name="StudentIdInput" Margin="5,0,15,0" />
-            <TextBlock Text="Name:" VerticalAlignment="Center" />
-            <TextBox Width="100" x:Name="NameInput" Margin="5,0,15,0" />
-            <TextBlock Text="Age:" VerticalAlignment="Center" />
+            <TextBlock Text="Name:" VerticalAlignment="Center" Foreground="Black" />
+            <TextBox Width="120" x:Name="NameInput" Margin="5,0,15,0" />
+            <TextBlock Text="Age:" VerticalAlignment="Center" Foreground="Black" />
             <TextBox Width="50" x:Name="AgeInput" Margin="5,0,15,0" />
-            <TextBlock Text="Grade:" VerticalAlignment="Center" />
+            <TextBlock Text="Grade:" VerticalAlignment="Center" Foreground="Black" />
             <TextBox Width="50" x:Name="GradeInput" Margin="5,0,15,0" />
         </StackPanel>
 
