@@ -38,7 +38,7 @@ public class StudentManager(IStudentRepository repository) : IStudentManager
         if (age is > 0 and <= 100) student.Age = age.Value;
         if (grade is >= 1.00 and <= 6.00) student.Grade = grade.Value;
 
-        _repository.Add(student); 
+        _repository.Update(student); 
     }
 
     public List<Student> DisplayAllStudents() => _repository.GetAll();

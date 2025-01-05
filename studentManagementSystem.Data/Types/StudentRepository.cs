@@ -9,6 +9,11 @@ public class StudentRepository(StudentDbContext context) : IStudentRepository
 
     public void Add(Student student)
     {
+        if (_context.Students.Any(s => s.StudentId == student.StudentId))
+        {
+            throw new InvalidOperationException($"A student with ID {student.StudentId} already exists.");
+        }
+
         _context.Students.Add(student);
         _context.SaveChanges();
     }
@@ -16,6 +21,12 @@ public class StudentRepository(StudentDbContext context) : IStudentRepository
     public void Remove(Student student)
     {
         _context.Students.Remove(student);
+        _context.SaveChanges();
+    }
+    
+    public void Update(Student student)
+    {
+        _context.Students.Update(student);
         _context.SaveChanges();
     }
 
