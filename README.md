@@ -146,5 +146,31 @@ public partial class MainWindow : Window
 
 ---
 
+## Testowanie
+
+### Narzędzia testowe
+Testy jednostkowe zostały zaimplementowane za pomocą **xUnit** oraz biblioteki **Shouldly**. 
+
+### Scenariusze testowe
+#### StudentRepositoryTests
+- `Add_ShouldAddStudentToDatabase`: Testuje poprawność dodawania studenta do bazy danych.
+- `GetById_ShouldReturnCorrectStudent`: Sprawdza poprawność pobierania studenta po ID.
+- `Remove_ShouldRemoveStudentFromDatabase`: Weryfikuje usuwanie studenta z bazy danych.
+- `GetAll_ShouldReturnAllStudents`: Testuje poprawność zwracania listy studentów.
+- `CalculateAverageGrade_ShouldReturnCorrectAverage`: Sprawdza poprawność obliczania średniej ocen.
+- `CalculateAverageGrade_ShouldReturnZero_WhenNoStudentsExist`: Weryfikuje zachowanie metody, gdy w bazie nie ma studentów.
+
+#### StudentManagerTests
+- `AddStudent_ShouldThrow_WhenNameIsEmpty`: Weryfikuje walidację pustego imienia.
+- `AddStudent_ShouldThrow_WhenAgeIsOutOfRange`: Sprawdza walidację zakresu wieku.
+- `AddStudent_ShouldCallRepositoryAdd_WhenValidStudent`: Weryfikuje, czy poprawny student jest dodawany do repozytorium.
+- `RemoveStudent_ShouldThrow_WhenStudentNotFound`: Testuje obsługę wyjątku, gdy student nie istnieje.
+- `RemoveStudent_ShouldCallRepositoryRemove_WhenStudentExists`: Sprawdza poprawność usuwania studenta w repozytorium.
+
+---
+
 ## Wygląd aplikacji
 ![Student Management System](assets/ScreenshotApp.png)
+
+
+
