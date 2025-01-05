@@ -147,3 +147,4 @@ public partial class MainWindow : Window
 ---
 
 ## Wygląd aplikacji
+![Student Management System](assets/ScreenshotApp.png)
