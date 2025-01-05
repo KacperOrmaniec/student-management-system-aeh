@@ -1,13 +1,15 @@
-using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using studentManagementSystem.Data.Abstractions;
+using studentManagementSystem.Data.Database;
+using studentManagementSystem.Data.Types;
 
-namespace studentManagementSystem.Database;
+namespace studentManagementSystem.Data;
 
 public static class Extensions
 {
-    public static IServiceCollection AddDatabaseService(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
 
         services.AddSingleton<DatabaseService>(provider =>
@@ -27,6 +29,7 @@ public static class Extensions
             options.UseNpgsql(connectionString);
         });
 
+        services.AddTransient<IStudentRepository, StudentRepository>();
 
         return services;
     }

@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
-namespace studentManagementSystem.Database;
+namespace studentManagementSystem.Data.Database;
 
 public class StudentDbContextFactory : IDesignTimeDbContextFactory<StudentDbContext>
 {

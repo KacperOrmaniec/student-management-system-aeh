@@ -1,13 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using studentManagementSystem.Entities;
 using System;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using studentManagementSystem.Abstractions;
-using studentManagementSystem.Database;
+using studentManagementSystem.Core.Abstractions;
+using studentManagementSystem.Data.Types;
 
-namespace studentManagementSystemAvaloniaGui;
+namespace studentManagementSystem.Gui;
 
 public partial class MainWindow : Window
 {

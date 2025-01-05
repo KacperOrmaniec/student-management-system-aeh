@@ -1,7 +1,6 @@
-using System.Collections;
-using studentManagementSystem.Entities;
+using studentManagementSystem.Data.Types;
 
-namespace studentManagementSystem.Abstractions;
+namespace studentManagementSystem.Core.Abstractions;
 
 public interface IStudentManager
 {

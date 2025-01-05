@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace studentManagementSystem.Entities;
+namespace studentManagementSystem.Data.Types;
 
 public class Student(string name, int age, double grade, string studentId)
 {

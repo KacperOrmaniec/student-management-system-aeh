@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using studentManagementSystem.Entities;
+using studentManagementSystem.Data.Types;
 
-namespace studentManagementSystem.Database;
+namespace studentManagementSystem.Data.Database;
 
 public class StudentDbContext : DbContext
 {

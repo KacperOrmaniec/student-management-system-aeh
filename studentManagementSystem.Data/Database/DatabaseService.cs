@@ -1,7 +1,6 @@
-using Microsoft.Extensions.Configuration;
 using Npgsql;
 
-namespace studentManagementSystem.Database;
+namespace studentManagementSystem.Data.Database;
 
 public class DatabaseService(string connectionString)
 {

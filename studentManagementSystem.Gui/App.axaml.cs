@@ -3,7 +3,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace studentManagementSystemAvaloniaGui;
+namespace studentManagementSystem.Gui;
 
 public partial class App(IServiceProvider serviceProvider) : Application
 {

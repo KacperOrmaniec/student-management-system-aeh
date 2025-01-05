@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace studentManagementSystem.Migrations
+namespace studentManagementSystem.Core.Migrations
 {
     /// <inheritdoc />
     public partial class UpdatePrimaryKey : Migration
