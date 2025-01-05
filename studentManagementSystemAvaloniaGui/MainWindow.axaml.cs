@@ -24,6 +24,30 @@ public partial class MainWindow : Window
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
+            {
+                OutputArea.Text += "Error: Student ID cannot be empty.\n";
+                return;
+            }
+            
+            if (string.IsNullOrWhiteSpace(NameInput.Text))
+            {
+                OutputArea.Text += "Error: Name cannot be empty.\n";
+                return;
+            }
+            
+            if (string.IsNullOrWhiteSpace(AgeInput.Text))
+            {
+                OutputArea.Text += "Error: Age cannot be empty.\n";
+                return;
+            }
+            
+            if (string.IsNullOrWhiteSpace(GradeInput.Text))
+            {
+                OutputArea.Text += "Error: Grade cannot be empty.\n";
+                return;
+            }
+
             var student = new Student(NameInput.Text, 
                                       int.Parse(AgeInput.Text), 
                                       double.Parse(GradeInput.Text), 
@@ -41,6 +65,12 @@ public partial class MainWindow : Window
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
+            {
+                OutputArea.Text += "Error: Student ID cannot be empty.\n";
+                return;
+            }
+            
             _studentManager.RemoveStudent(StudentIdInput.Text);
             OutputArea.Text += "Student removed successfully.\n";
         }
@@ -54,6 +84,12 @@ public partial class MainWindow : Window
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(StudentIdInput.Text))
+            {
+                OutputArea.Text += "Error: Student ID cannot be empty.\n";
+                return;
+            }
+            
             _studentManager.UpdateStudent(StudentIdInput.Text, 
                                           NameInput.Text, 
                                           int.TryParse(AgeInput.Text, out var age) ? age : (int?)null, 
