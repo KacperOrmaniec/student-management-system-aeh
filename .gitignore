@@ -3,7 +3,8 @@
 /studentManagementSystem.Data/bin/
 /studentManagementSystem.Gui/obj/
 /studentManagementSystem.Gui/bin/
-/studentManagementSystem.Core/obj/
-/studentManagementSystem.Core/bin/
+/studentManagementSystem.Model/obj/
+/studentManagementSystem.Model/bin/
 /StudentManagementSystem.Unit/bin/
 /StudentManagementSystem.Unit/obj/
+/.vs/

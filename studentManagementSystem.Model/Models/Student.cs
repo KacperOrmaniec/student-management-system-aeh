@@ -1,4 +1,4 @@
-namespace studentManagementSystem.Data.Types;
+namespace studentManagementSystem.Model.Models;
 
 public class Student(string name, int age, double grade, string studentId)
 {

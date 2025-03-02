@@ -1,7 +1,8 @@
 using studentManagementSystem.Core.Abstractions;
-using studentManagementSystem.Core.Entities;
+using studentManagementSystem.Model.Abstractions;
+using studentManagementSystem.Model.Entities;
 
-namespace studentManagementSystem.Core;
+namespace studentManagementSystem.Model;
 
 public static class Extensions
 {
