@@ -1,6 +1,6 @@
 using studentManagementSystem.Model.Models;
 
-namespace studentManagementSystem.Model.Abstractions;
+namespace studentManagementSystem.Data.Abstractions;
 
 public interface IStudentManager
 {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using studentManagementSystem.Data.Abstractions;
 using studentManagementSystem.Data.Database;
+using studentManagementSystem.Data.Entities;
 using studentManagementSystem.Data.Types;
 
 namespace studentManagementSystem.Data;
@@ -30,6 +31,7 @@ public static class Extensions
         });
 
         services.AddTransient<IStudentRepository, StudentRepository>();
+        services.AddTransient<IStudentManager, StudentManager>();
 
         return services;
     }

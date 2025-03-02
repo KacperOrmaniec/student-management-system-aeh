@@ -1,8 +1,7 @@
-using studentManagementSystem.Data.Abstractions;
-using studentManagementSystem.Model.Abstractions;
 using studentManagementSystem.Model.Models;
+using studentManagementSystem.Data.Abstractions;
 
-namespace studentManagementSystem.Model.Entities;
+namespace studentManagementSystem.Data.Entities;
 
 public class StudentManager(IStudentRepository repository) : IStudentManager
 {

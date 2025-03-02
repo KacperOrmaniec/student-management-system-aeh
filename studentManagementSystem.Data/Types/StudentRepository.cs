@@ -1,5 +1,6 @@
 using studentManagementSystem.Data.Abstractions;
 using studentManagementSystem.Data.Database;
+using studentManagementSystem.Model.Models;
 
 namespace studentManagementSystem.Data.Types;
 
