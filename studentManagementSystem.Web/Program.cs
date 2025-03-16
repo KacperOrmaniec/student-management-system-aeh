@@ -1,6 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using studentManagementSystem.Data.Abstractions;
+using studentManagementSystem.Data.Database;
+using studentManagementSystem.Data.Entities;
+using studentManagementSystem.Data.Types;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Konfiguracja DbContext
+builder.Services.AddDbContext<StudentDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
+
+// Rejestracja repozytoriów i serwisów
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentManager, StudentManager>();
+
+// Dodaj us³ugi MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
