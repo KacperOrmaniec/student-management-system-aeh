@@ -8,4 +8,5 @@
 /StudentManagementSystem.Unit/bin/
 /StudentManagementSystem.Unit/obj/
 /.vs/
-/studentManagementSystem.Web/obj
+/studentManagementSystem.Web/obj/
+/studentManagementSystem.Web/bin/
