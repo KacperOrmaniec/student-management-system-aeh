@@ -1,0 +1,31 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace studentManagementSystem.Data.Database;
+
+public static class Extensions
+{
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    {
+
+        services.AddSingleton<DatabaseService>(provider =>
+        {
+            var connectionString = configuration["database:connectionStrings:postgres"];
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("Connection string for PostgreSQL is null or empty.");
+            }
+
+            return new DatabaseService(connectionString ?? throw new InvalidOperationException("Connection string not found."));
+        });
+
+        services.AddDbContext<StudentDbContext>(options =>
+        {
+            var connectionString = configuration["database:connectionStrings:postgres"];
+            options.UseNpgsql(connectionString);
+        });
+
+        return services;
+    }
+}
